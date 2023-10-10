@@ -10,11 +10,11 @@ import org.mockito.junit.MockitoJUnitRunner
 @RunWith(MockitoJUnitRunner::class)
 class GifDetailActivityTest {
 
-    private lateinit var gifDetailActivity: GifDetailActivity
+    private lateinit var gifDetailActivity: GifDetailFragment
 
     @Before
     fun setup() {
-        gifDetailActivity = GifDetailActivity()
+        gifDetailActivity = GifDetailFragment()
     }
 
     @Test

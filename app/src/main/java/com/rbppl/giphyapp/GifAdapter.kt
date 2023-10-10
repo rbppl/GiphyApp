@@ -1,28 +1,45 @@
 package com.rbppl.giphyapp
 import android.content.Context
+import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.BaseAdapter
 import android.widget.ImageView
+import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-class GifAdapter(private val context: Context, private val gifUrls: List<String>) : BaseAdapter() {
 
-    override fun getCount(): Int {
-        return gifUrls.size
+class GifAdapter(
+    private val context: Context,
+    private val gifUrls: List<String>,
+    private val clickListener: (position: Int) -> Unit
+) : RecyclerView.Adapter<GifAdapter.ViewHolder>() {
+
+    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        val imageView: ImageView = itemView.findViewById(R.id.gifImageView)
+
+        init {
+            itemView.setOnClickListener {
+                val position = adapterPosition
+                if (position != RecyclerView.NO_POSITION) {
+                    clickListener(position)
+                }
+            }
+        }
     }
 
-    override fun getItem(position: Int): Any {
-        return gifUrls[position]
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        val view = LayoutInflater.from(parent.context)
+            .inflate(R.layout.item_gif, parent, false)
+        return ViewHolder(view)
     }
 
-    override fun getItemId(position: Int): Long {
-        return position.toLong()
-    }
-
-    override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val gifUrl = gifUrls[position]
-        val imageView = ImageView(context)
-        Glide.with(context).load(gifUrl).into(imageView)
-        return imageView
+        Glide.with(context)
+            .load(gifUrl)
+            .into(holder.imageView)
+    }
+
+    override fun getItemCount(): Int {
+        return gifUrls.size
     }
 }

@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".GifDetailActivity">
+    tools:context=".GifDetailFragment">
 
     <ImageView
         android:id="@+id/gifFullImageView"
@@ -12,7 +12,8 @@
         android:layout_height="match_parent"
         android:scaleType="fitCenter"
         tools:layout_editor_absoluteX="-41dp"
-        tools:layout_editor_absoluteY="0dp" />
+        tools:layout_editor_absoluteY="0dp"
+        tools:ignore="ContentDescription" />
 
     <ImageButton
         android:id="@+id/ic_back"
@@ -20,7 +21,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
         android:layout_marginTop="15dp"
-        android:src="@drawable/ic_back"
+        android:background="@drawable/ic_back"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="ContentDescription" />
 </androidx.constraintlayout.widget.ConstraintLayout>
